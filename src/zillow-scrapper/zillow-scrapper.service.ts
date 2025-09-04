@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CreateZillowScrapperDto } from './dto/create-zillow-scrapper.dto';
 import { UpdateZillowScrapperDto } from './dto/update-zillow-scrapper.dto';
 
+// TODO: Conectar com o API scrapper do Zillow
+
 @Injectable()
 export class ZillowScrapperService {
   create(createZillowScrapperDto: CreateZillowScrapperDto) {

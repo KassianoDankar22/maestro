@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { SupabaseService } from './supabase.service';
 import { CreateSupabaseDto } from './dto/create-supabase.dto';
 import { UpdateSupabaseDto } from './dto/update-supabase.dto';
@@ -8,27 +16,35 @@ export class SupabaseController {
   constructor(private readonly supabaseService: SupabaseService) {}
 
   @Post()
-  create(@Body() createSupabaseDto: CreateSupabaseDto) {
-    return this.supabaseService.create(createSupabaseDto);
+  async create(@Body() createSupabaseDto: CreateSupabaseDto) {
+    const data = await this.supabaseService.create(createSupabaseDto);
+    return { message: 'This action adds a new supabase', data };
   }
 
   @Get()
-  findAll() {
-    return this.supabaseService.findAll();
+  async findAll() {
+    const data = await this.supabaseService.findAll();
+    return { message: 'This action returns all supabase', data };
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.supabaseService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const data = await this.supabaseService.findOne(+id);
+    return { message: 'This action returns a #${id} supabase', data };
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSupabaseDto: UpdateSupabaseDto) {
-    return this.supabaseService.update(+id, updateSupabaseDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateSupabaseDto: UpdateSupabaseDto,
+  ) {
+    const data = await this.supabaseService.update(+id, updateSupabaseDto);
+    return { message: 'This action updates a #${id} supabase', data };
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.supabaseService.remove(+id);
+  async remove(@Param('id') id: string) {
+    const data = await this.supabaseService.remove(+id);
+    return { message: 'This action removes a #${id} supabase', data };
   }
 }

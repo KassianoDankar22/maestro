@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CreateNewhomesourceScrapperDto } from './dto/create-newhomesource-scrapper.dto';
 import { UpdateNewhomesourceScrapperDto } from './dto/update-newhomesource-scrapper.dto';
 
+// TODO: Conectar com o API scrapper do Newhomesource
+
 @Injectable()
 export class NewhomesourceScrapperService {
   create(createNewhomesourceScrapperDto: CreateNewhomesourceScrapperDto) {

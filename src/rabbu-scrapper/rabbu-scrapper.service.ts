@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CreateRabbuScrapperDto } from './dto/create-rabbu-scrapper.dto';
 import { UpdateRabbuScrapperDto } from './dto/update-rabbu-scrapper.dto';
 
+// TODO: Conectar com o API scrapper do Rabbu
+
 @Injectable()
 export class RabbuScrapperService {
   create(createRabbuScrapperDto: CreateRabbuScrapperDto) {

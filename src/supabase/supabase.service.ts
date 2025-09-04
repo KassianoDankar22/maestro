@@ -2,25 +2,29 @@ import { Injectable } from '@nestjs/common';
 import { CreateSupabaseDto } from './dto/create-supabase.dto';
 import { UpdateSupabaseDto } from './dto/update-supabase.dto';
 
+import { SupabaseRepository } from './supabase.repository';
+
 @Injectable()
 export class SupabaseService {
-  create(createSupabaseDto: CreateSupabaseDto) {
-    return 'This action adds a new supabase';
+  constructor(private readonly supabaseRepository: SupabaseRepository) {}
+
+  async create(createSupabaseDto: CreateSupabaseDto) {
+    return await this.supabaseRepository.create(createSupabaseDto);
   }
 
-  findAll() {
-    return `This action returns all supabase`;
+  async findAll() {
+    return await this.supabaseRepository.findAll();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} supabase`;
+  async findOne(id: number) {
+    return await this.supabaseRepository.findOne(id);
   }
 
-  update(id: number, updateSupabaseDto: UpdateSupabaseDto) {
-    return `This action updates a #${id} supabase`;
+  async update(id: number, updateSupabaseDto: UpdateSupabaseDto) {
+    return await this.supabaseRepository.update(id, updateSupabaseDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} supabase`;
+  async remove(id: number) {
+    return await this.supabaseRepository.delete(id);
   }
 }

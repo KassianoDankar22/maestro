@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CreateMatchScrapperDto } from './dto/create-match-scrapper.dto';
 import { UpdateMatchScrapperDto } from './dto/update-match-scrapper.dto';
 
+// TODO: Tratar os dados depois de extraidos dos scrapper
+
 @Injectable()
 export class MatchScrapperService {
   create(createMatchScrapperDto: CreateMatchScrapperDto) {
