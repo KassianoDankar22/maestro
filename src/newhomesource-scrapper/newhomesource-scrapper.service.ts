@@ -1,28 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateNewhomesourceScrapperDto } from './dto/create-newhomesource-scrapper.dto';
-import { UpdateNewhomesourceScrapperDto } from './dto/update-newhomesource-scrapper.dto';
+import axios, { AxiosResponse } from 'axios';
+import { NewhomesourceScrapper } from './entities/newhomesource-scrapper.entity';
 
 // TODO: Conectar com o API scrapper do Newhomesource
 
 @Injectable()
 export class NewhomesourceScrapperService {
-  create(createNewhomesourceScrapperDto: CreateNewhomesourceScrapperDto) {
-    return 'This action adds a new newhomesourceScrapper';
-  }
-
-  findAll() {
-    return `This action returns all newhomesourceScrapper`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} newhomesourceScrapper`;
-  }
-
-  update(id: number, updateNewhomesourceScrapperDto: UpdateNewhomesourceScrapperDto) {
-    return `This action updates a #${id} newhomesourceScrapper`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} newhomesourceScrapper`;
+  async scrapeNewhomesource() {
+    const response: AxiosResponse<NewhomesourceScrapper> = await axios.get(
+      process.env.NEWHOMESOURCE_API_URL || '',
+    );
+    return response.data;
   }
 }
