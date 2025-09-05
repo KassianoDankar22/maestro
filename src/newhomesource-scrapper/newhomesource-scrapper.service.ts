@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import axios, { AxiosResponse } from 'axios';
 import { NewhomesourceScrapper } from './entities/newhomesource-scrapper.entity';
 
-// TODO: Conectar com o API scrapper do Newhomesource
+import axios, { AxiosResponse } from 'axios';
 
 @Injectable()
 export class NewhomesourceScrapperService {

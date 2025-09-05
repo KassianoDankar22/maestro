@@ -1,5 +1,3 @@
-// TODO: Criar entidade para o Newhomesource
-
 class Landmarks {
   name: string;
   distance: string;

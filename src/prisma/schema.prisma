@@ -1,0 +1,15 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("SUPABASE_URL_POSTGRES")
+}
+
+// TODO: Adicionar formato dos dados no banco
+  // TODO: Descobrir como os dados retornam (prevenir overwrites no que já temos)
