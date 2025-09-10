@@ -5,20 +5,28 @@ import { RabbuScrapperService } from 'src/rabbu-scrapper/rabbu-scrapper.service'
 
 @Injectable()
 export class ScrapperManagerService {
+  constructor(
+    private readonly newhomesourceScrapperService: NewhomesourceScrapperService,
+    private readonly zillowScrapperService: ZillowScrapperService,
+    private readonly rabbuScrapperService: RabbuScrapperService,
+  ) {}
+
   async iniciarScrapper() {
-    const newhomesourceScrapper = new NewhomesourceScrapperService();
-    const newhomesourceData = await newhomesourceScrapper.scrapeNewhomesource();
+    try {
+      const [newhomesourceData, zillowData, rabbuData] = await Promise.all([
+        this.newhomesourceScrapperService.scrapeNewhomesource(),
+        this.zillowScrapperService.scrapeZillow(),
+        this.rabbuScrapperService.scrapeRabbu(),
+      ]);
 
-    const zillowScrapper = new ZillowScrapperService();
-    const zillowData = await zillowScrapper.scrapeZillow();
-
-    const rabbuScrapper = new RabbuScrapperService();
-    const rabbuData = await rabbuScrapper.scrapeRabbu();
-
-    return {
-      NewHomeSource: newhomesourceData,
-      Zillow: zillowData,
-      Rabbu: rabbuData,
-    };
+      return {
+        NewHomeSource: newhomesourceData,
+        Zillow: zillowData,
+        Rabbu: rabbuData,
+      };
+    } catch (error) {
+      console.error('Erro ao iniciar scrapper: ', error.message);
+      throw error;
+    }
   }
 }

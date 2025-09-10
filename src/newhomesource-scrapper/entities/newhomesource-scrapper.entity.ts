@@ -14,15 +14,50 @@ class NeighborhoodAmenities {
 }
 
 class CommunityServices {
-  utilities: string[];
-  social_activities: string[];
+  utilities: Landmarks[];
+  social_activities: Landmarks[];
+  health_and_fitness: Landmarks[];
+  community_services: Landmarks[];
+}
+
+class HomeServices {
+  utilities: Landmarks[];
+  social_activities: Landmarks[];
   health_and_fitness: string[];
-  community_services: string[];
+  community_services: Landmarks[];
+  neighborhood_amenities: {
+    grocery_stores: Landmarks[];
+    specialized_stores: Landmarks[];
+    restaurants: Landmarks[];
+    coffee_shops: Landmarks[];
+    shopping: Landmarks[];
+    bars_and_nightlife: Landmarks[];
+  };
+  hoa_fees: string;
 }
 
 class BuilderDetails {
   logo_url: string;
   description: string;
+}
+
+class Home {
+  url: string;
+  type: string;
+  name: string;
+  price: string;
+  builder_details: BuilderDetails;
+  comunity_neighbourhood: HomeServices;
+  home_type: string;
+  bedrooms: string;
+  bathrooms: string;
+  half_bathrooms: string;
+  garage: string;
+  square_feet: string;
+  stories: string;
+  primary_bed_location: string;
+  features: string[];
+  images: string[];
 }
 
 class Communities {
@@ -39,9 +74,8 @@ class Communities {
   hoa: string;
   location: string;
 
-  // TODO: Pegar homes oficial
-  homes: [];
-  nearby_schools: [];
+  homes: Home[];
+  nearby_schools: Landmarks[];
   builder_details: BuilderDetails;
   comunity_neighbourhood: CommunityServices;
   neighborhood_amenities: NeighborhoodAmenities;

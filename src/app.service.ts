@@ -4,14 +4,22 @@ import { MatchScrapperService } from './match-scrapper/match-scrapper.service';
 
 @Injectable()
 export class AppService {
+  constructor(
+    private readonly scrapperManagerService: ScrapperManagerService,
+    private readonly matchScrapperService: MatchScrapperService,
+  ) {}
+
   async loteColetarDados() {
-    const scrapperManager = new ScrapperManagerService();
-    const data = await scrapperManager.iniciarScrapper();
+    try {
+      const data = await this.scrapperManagerService.iniciarScrapper();
 
-    const matchScrapper = new MatchScrapperService();
-    const matchedData = matchScrapper.matchData(data);
+      const matchedData = this.matchScrapperService.matchData(data);
 
-    // TODO: salvar os dados tratados no banco de dados pelo Prisma
-    return matchedData;
+      // TODO: salvar os dados tratados no banco de dados pelo Prisma
+      return matchedData;
+    } catch (error) {
+      console.error('Erro ao coletar dados: ', error.message);
+      throw error;
+    }
   }
 }

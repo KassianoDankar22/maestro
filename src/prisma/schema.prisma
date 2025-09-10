@@ -11,5 +11,6 @@ datasource db {
   url      = env("SUPABASE_URL_POSTGRES")
 }
 
-// TODO: Adicionar formato dos dados no banco
-  // TODO: Descobrir como os dados retornam (prevenir overwrites no que já temos)
+// TODO: Fazer migration do dado final dos scrappers
+// TODO: Descobrir como os dados retornam (prevenir overwrites no que já temos)
+// TODO: Fazer Dump do banco de dados

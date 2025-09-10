@@ -6,9 +6,14 @@ import axios, { AxiosResponse } from 'axios';
 @Injectable()
 export class ZillowScrapperService {
   async scrapeZillow() {
-    const response: AxiosResponse<ZillowScrapper> = await axios.get(
-      process.env.ZILLOW_API_URL || '',
-    );
-    return response.data;
+    try {
+      const response: AxiosResponse<ZillowScrapper> = await axios.get(
+        process.env.ZILLOW_API_URL || '',
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao buscar dados do Zillow: ', error.message);
+      throw error;
+    }
   }
 }

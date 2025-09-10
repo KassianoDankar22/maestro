@@ -6,9 +6,14 @@ import axios, { AxiosResponse } from 'axios';
 @Injectable()
 export class RabbuScrapperService {
   async scrapeRabbu() {
-    const response: AxiosResponse<RabbuScrapper> = await axios.get(
-      process.env.RABBU_API_URL || '',
-    );
-    return response.data;
+    try {
+      const response: AxiosResponse<RabbuScrapper> = await axios.get(
+        process.env.RABBU_API_URL || '',
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao buscar dados do Rabbu: ', error.message);
+      throw error;
+    }
   }
 }
